@@ -33,6 +33,10 @@ class TodoController extends Controller
     {
         sleep(1);
 
-        return to_route('index');
+        if ($request->simulate_error) {
+            return to_route('index')->with('error', 'Simulate some errors.');
+        }
+
+        return to_route('index')->with('success', 'Create todo successfully.');
     }
 }
